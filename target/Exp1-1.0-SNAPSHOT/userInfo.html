@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>个人中心</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .container{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .form-item-title{
+            display: inline-block;
+            width: 80px;
+            text-align-last: justify;
+            text-align: center;
+        }
+        .btn{
+            display: inline-block;
+            width: 40px;
+        }
+        .header{
+            background-color: cornflowerblue;
+            height: 100px;
+            width: 100vw;
+        }
+        .title{
+            line-height: 100px;
+            display: inline-block;
+            margin-left: 100px;
+            color: beige;
+        }
+        .form-item{
+            margin: 10px 0;
+        }
+        .header h2{
+            float: right;
+            line-height: 100px;
+            margin: 0 50px;
+            width: 100px;
+            display: inline-block;
+        }
+        .header a{
+            color: white;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="title">xx系统</h1>
+            <h2><a href="welcome.html">首页</a></h2>
+        </div>
+        <h1 style="margin: 20px 0">个人中心</h1>
+        <form action="">
+            <div class="form-item">
+                <span class="form-item-title">个人姓名</span>：<input type="text" placeholder="请输入昵称" class="info name" disabled="disabled">
+            </div>
+            <div class="form-item">
+                <span class="form-item-title">手机号</span>：<input type="tel" placeholder="请输入手机号" class="info tel" disabled="disabled">
+            </div>
+            <div class="form-item">
+                <span class="form-item-title">地址</span>：<input type="tel" placeholder="请输入手机号" class="info tel" disabled="disabled">
+            </div>
+        </form>
+        <br>
+        <div>
+            <button class="btn" id="edit">编辑</button>
+            <button class="btn" id="save">保存</button>
+        </div>
+    </div>
+
+    <script>
+        let info = document.getElementsByClassName("info")
+        document.getElementById("edit").addEventListener("click",function (){
+            for(let i = 0;i < info.length;i++){
+                info[i].removeAttribute ('disabled')
+            }
+        })
+        document.getElementById("save").addEventListener("click",function (){
+            for(let i = 0;i < info.length;i++){
+                info[i].setAttribute ('disabled','disabled')
+            }
+        })
+    </script>
+</body>
+</html>
