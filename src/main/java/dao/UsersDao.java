@@ -24,10 +24,11 @@ public class UsersDao {
         Users user = new Users();
         user.setUsername(name);
         user.setPassword(pwd);
-        String sql = "INSERT INTO users VALUES(?,?)";
+        String sql = "INSERT INTO users VALUES(?,?,?)";
         PreparedStatement preStmt = JdbcConn.getPreStmt(sql);
         preStmt.setString(1, user.getUsername());
         preStmt.setString(2, user.getPassword());
+        preStmt.setString(3, String.valueOf(System.currentTimeMillis()).substring(String.valueOf(System.currentTimeMillis()).length() - 8));
         Integer result = preStmt.executeUpdate();
         if(result == 1){
             return true;

@@ -20,11 +20,22 @@ public class UserLogin_useDao extends HttpServlet {
         request.setCharacterEncoding("utf-8");
         response.setCharacterEncoding("utf-8");
         UsersDao usersDao = new UsersDao();
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        HttpSession loginFailed = request.getSession();
         try {
-            if(usersDao.login(request.getParameter("username"), request.getParameter("password"))){
+            if(usersDao.login(username, password)){
+                /*Cookie cookie = new Cookie("name", username.equals("admin")?"管理员":username);
+                response.addCookie(cookie);*/
+                HttpSession loginName = request.getSession();
+                loginName.setAttribute("loginName", username.equals("admin")?"管理员":username);
+                loginFailed.setAttribute("loginFailed", false);
                 response.sendRedirect("welcome.jsp");
+                return;
             }else {
-                response.sendRedirect("loginFailed.html");
+//              response.sendRedirect("loginFailed.html");
+                loginFailed.setAttribute("loginFailed", true);
+                response.sendRedirect("login.jsp");
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);

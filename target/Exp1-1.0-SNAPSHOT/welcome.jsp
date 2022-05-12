@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="java.io.Console" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
@@ -66,7 +67,7 @@
     </style>
 </head>
 <body>
-<%
+<%--<%
     Cookie[] cookie = request.getCookies();
     String name = null;
     for (int i = 0; i < cookie.length; i++) {
@@ -74,17 +75,20 @@
             name = cookie[i].getValue();
         }
     }
-%>
+%>--%>
 <div class="header">
-    <h1 class="title">欢迎<%=name%>使用xx系统</h1>
+    <h1 class="title">欢迎${loginName}使用xx系统</h1>
     <div class="redirect">
-        <%
+        <%--<%
             if(name.equals("管理员")){
                 out.println("<h2><a href=\"admin.jsp\">管理页面</a></h2>");
             }
-        %>
+        %>--%>
+        <c:if test="${loginName eq '管理员'}">
+            <h2><a href="admin.jsp">管理页面</a></h2>
+        </c:if>
         <h2><a href="userInfo.html">个人中心</a></h2>
-        <h2><a href="login.html">退出</a></h2>
+        <h2><a href="login.jsp">退出</a></h2>
     </div>
 
     <div class="goodList">
